@@ -153,10 +153,11 @@
     </Compile>
     <Compile Include="Models\Bodypart.cs" />
     <Compile Include="Models\Effect.cs" />
-    <Compile Include="Models\exercise.cs" />
+    <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Trainee.cs" />
     <Compile Include="Models\Training.cs" />
-    <Compile Include="Models\training_record.cs" />
+    <Compile Include="Models\Training_record.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
