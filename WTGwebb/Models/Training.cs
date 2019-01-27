@@ -25,6 +25,7 @@ public class Training {
         this.TrainingID = trainingId;
         this.Week = week;
         this.Frequency = freqiency;
+        this.TraineeID = traineeId;
     }
     
     

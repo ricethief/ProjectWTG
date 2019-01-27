@@ -25,10 +25,10 @@ public class Trainee
     {
     }
 
-    public void Trainee(int id, String password, String firstName, String lastName, String email) : this(id, password, firstName, lastName, email,"null") 
+    public  Trainee(int id, String password, String firstName, String lastName, String email) : this(id, password, firstName, lastName, email,"null") 
 {
     }
-    public void Trainee(int id, String password, String firstName, String lastName, String email, String phoneNumber)
+    public  Trainee(int id, String password, String firstName, String lastName, String email, String phoneNumber)
     {
         this.ID = id;
         this.Password = password;
