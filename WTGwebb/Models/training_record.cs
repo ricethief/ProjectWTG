@@ -4,51 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class training_record {
+public class Training_record {
 
-    public training_record() {
+  
+
+    public Decimal Tonnage { get; set; }
+
+    public Decimal Reps { get; set; }
+
+    public int TrainingID { get; set; }
+
+    public Decimal EveredgeIntensity { get; set; }
+
+    public Training_record()
+    {
     }
+    public Training_record(Decimal tonnage, Decimal reps, int trainingId):this(tonnage,reps,trainingId,0)
+    {
 
-    public void tonnage;
-
-    public void reps;
-
-    public void trainingID;
-
-    public void traineeID;
-
-    public Training records;
-
-    public void getTonnage() {
-        // TODO implement here
     }
-
-    public void setTonange() {
-        // TODO implement here
-    }
-
-    public void getReps() {
-        // TODO implement here
-    }
-
-    public void setReps() {
-        // TODO implement here
-    }
-
-    public void getTrainingID() {
-        // TODO implement here
-    }
-
-    public void setTrainingID() {
-        // TODO implement here
-    }
-
-    public void getTraineeID() {
-        // TODO implement here
-    }
-
-    public void setTraineeID() {
-        // TODO implement here
+    public Training_record(Decimal tonnage, Decimal reps, int trainingId, Decimal everedgeIntensity) 
+    {
+        this.Tonnage = tonnage;
+        this.Reps = reps;
+        this.TrainingID = trainingId;
+        this.EveredgeIntensity = everedgeIntensity;
     }
 
 }
