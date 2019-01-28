@@ -3,6 +3,17 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<head>
+    @Styles.Render("~/Content/Site.css")
+</head>
 <h2>Create</h2>
+
+<div class="horizontally-stacked-slider">
+    <div class="title">
+        Choose the length of program
+    </div>
+        <input type="range" min="1" max="16" steps="1" value="16">
+</div>
+
+
 
