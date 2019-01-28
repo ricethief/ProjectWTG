@@ -235,23 +235,12 @@
                     <input type="range" name="slider2" for="result2"
                            min="1" max="10" steps="1" value="10" oninput="result2.value=slider2.value">
                     <div class="horizontally-stacked-slider">
-                        <table style="width:100%" border="1">
-                            <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Age</th>
-                            </tr>
-                            <tr>
-                                <td>Jill</td>
-                                <td>Smith</td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <td>Eve</td>
-                                <td>Jackson</td>
-                                <td>94</td>
-                            </tr>
-                        </table>
+                        <select name="Select2" size="1" id="ddlCars">
+                            <option value="">- Please select a name -</option>
+                            <option value"squat">Maintain Muscle</option>
+                            <option value"benchPress">Build Muscle</option>
+                            <option value"deadLift">Build Strength</option>
+                        </select>
                         <input type="number" class="result" name="result2" for="slider2"
                                min="1" max="10" oninput="slider2.value=result2.value">
                     </div>
