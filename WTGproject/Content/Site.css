@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 600px;
 }
 
     /*
@@ -173,11 +173,6 @@ textarea {
     align-items: center;
 }
 
-    .horizontally-stacked-slider > .title {
-        flex: 1;
-        padding: 8px;
-    }
-
-    .horizontally-stacked-slider > input[type="range"] {
-        flex: 1;
-    }
+.sam {
+    overflow: auto;
+}

@@ -6,14 +6,263 @@
 <head>
     @Styles.Render("~/Content/Site.css")
 </head>
-<h2>Create</h2>
+<body>
+    <h2>Create Program</h2>
+    <!--Week slider bar-->
+    <fieldset>
+        <legend>CHOOSE THE LENGHTH OF PROGRAM</legend>
+        <div class="horizontally-stacked-slider">
 
-<div class="horizontally-stacked-slider">
-    <div class="title">
-        Choose the length of program
+            <form class="horizontally-stacked-slider">
+                <input type="range" name="slider" for="result"
+                       min="4" max="16" steps="1" value="16" oninput="result.value=slider.value">
+                <input type="number" class="result" name="result" for="slider"
+                       min="4" max="16" oninput="slider.value=result.value">
+            </form>
+        </div>
+    </fieldset>
+    <div>
+        <!--choose date/exercise-->
+        <div class="vertically-stacked-slider">
+            <fieldset>
+                <legend>CHOOSE DATE/EXERCISE</legend>
+                <table style="width:100%" border="1">
+                    <tr>
+                        <th>DAY</th>
+
+                        <th>Main Exercise</th>
+                        <th>Assistense1</th>
+                        <th>Assistense2</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Monday" value="Monday" />Monday</td>
+                        <td>
+                            <select name="Select1" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Tuesday" value="Tuesday" />Tuesday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Wednesday" value="Wednesday" />Wednesday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Thursday" value="Thursday" />Thursday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Friday" value="Friday" />Friday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Saturday" value="Saturday" />Saturday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="date" id="Sunday" value="Sunday" />Sunday</td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="Select2" size="1" id="ddlCars">
+                                <option value="">- Please select a name -</option>
+                                <option value"squat">Squat</option>
+                                <option value"benchPress">BenchPress</option>
+                                <option value"deadLift">DeadLift</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <!--choose intensity-->
+        <div class="horizontally-stacked-slider">
+            <fieldset>
+                <legend>WHAT IS YOUR GOAL / INTENSITY</legend>
+
+                <form>
+                    <input type="range" name="slider2" for="result2"
+                           min="1" max="10" steps="1" value="10" oninput="result2.value=slider2.value">
+                    <div class="horizontally-stacked-slider">
+                        <table style="width:100%" border="1">
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Age</th>
+                            </tr>
+                            <tr>
+                                <td>Jill</td>
+                                <td>Smith</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Eve</td>
+                                <td>Jackson</td>
+                                <td>94</td>
+                            </tr>
+                        </table>
+                        <input type="number" class="result" name="result2" for="slider2"
+                               min="1" max="10" oninput="slider2.value=result2.value">
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+
     </div>
-        <input type="range" min="1" max="16" steps="1" value="16">
-</div>
+</body>
+
+
 
 
 
