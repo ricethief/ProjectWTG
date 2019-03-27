@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -194,9 +196,36 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bodypart.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exercise.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exercise_bodypart.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exercise_category.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +241,25 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Training.cs">
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WTGDBEDM.cs" />
+    <Compile Include="WTGproject.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WTGproject.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WTGproject.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WTGproject.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WTGproject.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WTGproject.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -228,8 +276,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WTGproject.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WTGproject.edmx</DependentUpon>
+      <LastGenOutput>WTGproject.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WTGproject.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WTGproject.edmx</DependentUpon>
+      <LastGenOutput>WTGproject.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\Custom.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -277,6 +334,13 @@
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Profilepage.cshtml" />
     <Content Include="Views\Home\Training.cshtml" />
+    <EntityDeploy Include="WTGproject.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WTGproject.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="WTGproject.edmx.diagram">
+      <DependentUpon>WTGproject.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +357,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -43,6 +43,11 @@ namespace WTGwebb.Models
            training_Records.Add(trr);
            //Training_record stores data of Training
         }
+        //after creating training, and adding that to training record, we'll calaulate the weekly training for the trainee,
+        //and at the end of this function(calculating rep, set, etc), it will store those data inthe training record.
+        // (tonage, reps, training)
+
+
 
 
 
