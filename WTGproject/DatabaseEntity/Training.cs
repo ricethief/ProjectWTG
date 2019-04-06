@@ -7,28 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercise
+    public partial class Training
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Exercise()
+        public Training()
         {
-            this.Exercise_bodypart = new HashSet<Exercise_bodypart>();
+            this.TrainingDetails = new HashSet<TrainingDetail>();
         }
     
-        public int exerciseID { get; set; }
-        public string exerciseName { get; set; }
-        public Nullable<decimal> C1RM { get; set; }
-        public Nullable<int> fk_training_trainingID { get; set; }
-        public string fk_exercise_categoryID { get; set; }
+        public int trainingId { get; set; }
+        public string fk_AspNetUser_ID { get; set; }
+        public int week { get; set; }
+        public string frequency { get; set; }
+        public decimal Intensity { get; set; }
+        public Nullable<decimal> tonnage { get; set; }
+        public Nullable<decimal> reps { get; set; }
+        public string avIntensity { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exercise_bodypart> Exercise_bodypart { get; set; }
-        public virtual Training Training { get; set; }
-        public virtual Exercise_category Exercise_category { get; set; }
+        public virtual ICollection<TrainingDetail> TrainingDetails { get; set; }
     }
 }

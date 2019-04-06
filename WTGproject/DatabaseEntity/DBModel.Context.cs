@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WTGEntities : DbContext
+    public partial class DBEntities : DbContext
     {
-        public WTGEntities()
-            : base("name=WTGEntities")
+        public DBEntities()
+            : base("name=DBEntities")
         {
         }
     
@@ -25,15 +25,16 @@ namespace WTGproject
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Bodypart> Bodyparts { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Bodypart> Bodypart { get; set; }
-        public virtual DbSet<Exercise> Exercise { get; set; }
         public virtual DbSet<Exercise_bodypart> Exercise_bodypart { get; set; }
         public virtual DbSet<Exercise_category> Exercise_category { get; set; }
-        public virtual DbSet<Training> Training { get; set; }
+        public virtual DbSet<Exercis> Exercises { get; set; }
+        public virtual DbSet<TrainingDetail> TrainingDetails { get; set; }
+        public virtual DbSet<Training> Trainings { get; set; }
     }
 }

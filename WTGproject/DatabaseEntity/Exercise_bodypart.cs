@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,6 @@ namespace WTGproject
         public decimal EMG { get; set; }
     
         public virtual Bodypart Bodypart { get; set; }
-        public virtual Exercise Exercise { get; set; }
+        public virtual Exercis Exercis { get; set; }
     }
 }

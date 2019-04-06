@@ -1,0 +1,61 @@
+﻿@model WTGproject.DatabaseEntity.Training
+
+<div>
+    <h4>Training</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.frequency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frequency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intensity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intensity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tonnage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tonnage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reps)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avIntensity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avIntensity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+ 
+    @Html.ActionLink("Back to List", "Index")
+</p>

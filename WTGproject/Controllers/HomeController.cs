@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WTGproject;
+using WTGproject.DatabaseEntity;
 
 //using System.data.Entity to use db entity
 
@@ -15,7 +15,7 @@ namespace WTGproject.Controllers
 
 
         //db endtity object
-        private WTGEntities db = new WTGEntities();
+        private DBEntities db = new DBEntities();
 
         public ActionResult Index()
         {
@@ -46,15 +46,20 @@ namespace WTGproject.Controllers
         public ActionResult Create()
         {
             ViewBag.Message = "Your Create Training page.";
-            var exercises = db.Exercise;
+            var exercises = db.Exercises;
             return View(exercises.ToList());
+        }
+
+        public ActionResult generate()
+        {
+            return RedirectToAction("Training");
         }
 
         public ActionResult Profilepage()
         {
             ViewBag.Message = "Your Profile page.";
 
-            var exercises = db.Exercise;
+            var exercises = db.Exercises;
             return View(exercises.ToList());
         }
 

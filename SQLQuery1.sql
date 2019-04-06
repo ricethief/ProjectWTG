@@ -1,5 +1,5 @@
 ﻿
-INSERT INTO [Training] ([trainingId], [fk_AspNetUser_ID], [week], [frequency], [Intensity], [tonnage], [reps], [avIntensity]) VALUES (1, 'bd18411b-f1fb-4ad7-8a36-ff74385028c8', 4, '4', 8, NULL, NULL, NULL);
+INSERT INTO [Training] ([trainingId], [fk_AspNetUser_ID], [week], [frequency], [Intensity], [tonnage], [reps], [avIntensity]) VALUES (1, 'bd18411b-f1fb-4ad7-8a36-ff74385028c8', 4, '4', 8, NULL,NULL);
 
 COMMIT;
 
@@ -20,35 +20,35 @@ COMMIT;
 -- -----------------------------------------------------
 -- Data for table `[dao]`.`exercise`
 -- -----------------------------------------------------
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (1, 'Squat', NULL, NULL, 'sq');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (2, '2 Second Pause Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (3, 'Pin Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (4, 'Tempo Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (5, 'Banded Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (6, 'SSB Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (7, 'Banded Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (8, 'Front Squat', NULL, NULL, 'sqa');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (9, 'Benchpress', NULL, NULL, 'bc');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (10, '1 Second Pause Benchpress', NULL, NULL, 'bc');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (11, '2 Second pause Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (12, '3 Second Pause benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (13, 'Pin Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (14, 'Tempo Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (15, 'Bended Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (16, 'SS Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (17, 'Banded Benchpress', NULL, NULL, 'bca');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (18, 'Deadlift', NULL, NULL, 'dl');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (19, '1 Second Pause Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (20, '2 Second Pause Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (21, 'Deficit Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (22, 'Rack/Block Pull', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (23, 'RDL', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (24, 'Snachgrip Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (25, 'Banded Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (26, 'Trapbar Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (27, 'Stiflag Deadlift', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (28, 'Pandlay row', NULL, NULL, 'dla');
-INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM], [fk_training_trainingID], [fk_exercise_categoryID]) VALUES (29, 'Goodmorning', NULL, NULL, 'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (1, 'Squat', NULL, 'sq');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (2, '2 Second Pause Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (3, 'Pin Squat', NULL, 'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (4, 'Tempo Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (5, 'Banded Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (6, 'SSB Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (7, 'Banded Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (8, 'Front Squat', NULL,'sqa');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (9, 'Benchpress', NULL,'bc');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (10, '1 Second Pause Benchpress', NULL,'bc');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (11, '2 Second pause Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (12, '3 Second Pause benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (13, 'Pin Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (14, 'Tempo Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (15, 'Bended Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (16, 'SS Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (17, 'Banded Benchpress', NULL,'bca');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (18, 'Deadlift', NULL,'dl');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (19, '1 Second Pause Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (20, '2 Second Pause Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (21, 'Deficit Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (22, 'Rack/Block Pull', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (23, 'RDL', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (24, 'Snachgrip Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (25, 'Banded Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (26, 'Trapbar Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (27, 'Stiflag Deadlift', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (28, 'Pandlay row', NULL,'dla');
+INSERT INTO Exercise ([exerciseID], [exerciseName], [1RM],  [fk_exercise_categoryID]) VALUES (29, 'Goodmorning', NULL,'dla');
 
 COMMIT;
 

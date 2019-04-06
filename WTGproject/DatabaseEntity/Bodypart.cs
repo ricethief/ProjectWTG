@@ -7,23 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRoles
+    public partial class Bodypart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRoles()
+        public Bodypart()
         {
-            this.AspNetUsers = new HashSet<AspNetUsers>();
+            this.Exercise_bodypart = new HashSet<Exercise_bodypart>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int bodypartID { get; set; }
+        public string bodypartName { get; set; }
+        public decimal MV { get; set; }
+        public decimal MEV { get; set; }
+        public decimal MAV { get; set; }
+        public decimal MRV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual ICollection<Exercise_bodypart> Exercise_bodypart { get; set; }
     }
 }

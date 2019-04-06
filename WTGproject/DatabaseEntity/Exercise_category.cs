@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace WTGproject
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Exercise_category()
         {
-            this.Exercise = new HashSet<Exercise>();
+            this.Exercises = new HashSet<Exercis>();
         }
     
         public string exercise_categoryID { get; set; }
@@ -25,6 +25,6 @@ namespace WTGproject
         public string categoryType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exercise> Exercise { get; set; }
+        public virtual ICollection<Exercis> Exercises { get; set; }
     }
 }

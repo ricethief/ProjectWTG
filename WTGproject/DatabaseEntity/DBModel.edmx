@@ -4,17 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WTGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,11 +33,11 @@
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="AspNetRoles_Id" />
+            <PropertyRef Name="AspNetUsers_Id" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AspNetRoles_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -66,7 +56,7 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="Bodypart">
+        <EntityType Name="Bodyparts">
           <Key>
             <PropertyRef Name="bodypartID" />
           </Key>
@@ -77,15 +67,15 @@
           <Property Name="MAV" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="MRV" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
-        <EntityType Name="Exercise">
+        <EntityType Name="C__MigrationHistory">
           <Key>
-            <PropertyRef Name="exerciseID" />
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="exerciseID" Type="int" Nullable="false" />
-          <Property Name="exerciseName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="1RM" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="fk_training_trainingID" Type="int" />
-          <Property Name="fk_exercise_categoryID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
         <EntityType Name="Exercise_bodypart">
           <Key>
@@ -104,7 +94,26 @@
           <Property Name="categoryName" Type="varchar" MaxLength="50" />
           <Property Name="categoryType" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Training">
+        <EntityType Name="Exercises">
+          <Key>
+            <PropertyRef Name="exerciseID" />
+          </Key>
+          <Property Name="exerciseID" Type="int" Nullable="false" />
+          <Property Name="exerciseName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="C1RM" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="fk_exercise_categoryID" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingDetails">
+          <Key>
+            <PropertyRef Name="exerciseID" />
+            <PropertyRef Name="trainingId" />
+          </Key>
+          <Property Name="exerciseType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="exerciseDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="exerciseID" Type="int" Nullable="false" />
+          <Property Name="trainingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trainings">
           <Key>
             <PropertyRef Name="trainingId" />
           </Key>
@@ -117,6 +126,30 @@
           <Property Name="reps" Type="decimal" Precision="18" Scale="0" />
           <Property Name="avIntensity" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="AspNetRoles_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="AspNetUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -145,39 +178,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Exercise_bodypart_ToTable">
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="1" />
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
           <End Role="Exercise_bodypart" Type="Self.Exercise_bodypart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Exercise">
+            <Principal Role="Exercises">
               <PropertyRef Name="exerciseID" />
             </Principal>
             <Dependent Role="Exercise_bodypart">
@@ -186,10 +191,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Exercise_bodypart_ToTable2">
-          <End Role="Bodypart" Type="Self.Bodypart" Multiplicity="1" />
+          <End Role="Bodyparts" Type="Self.Bodyparts" Multiplicity="1" />
           <End Role="Exercise_bodypart" Type="Self.Exercise_bodypart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Bodypart">
+            <Principal Role="Bodyparts">
               <PropertyRef Name="bodypartID" />
             </Principal>
             <Dependent Role="Exercise_bodypart">
@@ -197,54 +202,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exercise_ToTable">
-          <End Role="Training" Type="Self.Training" Multiplicity="0..1" />
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Training">
-              <PropertyRef Name="trainingId" />
-            </Principal>
-            <Dependent Role="Exercise">
-              <PropertyRef Name="fk_training_trainingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Exercise_ToTable_1">
           <End Role="Exercise_category" Type="Self.Exercise_category" Multiplicity="1" />
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exercise_category">
               <PropertyRef Name="exercise_categoryID" />
             </Principal>
-            <Dependent Role="Exercise">
+            <Dependent Role="Exercises">
               <PropertyRef Name="fk_exercise_categoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_ToTable">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <End Role="Trainings" Type="Self.Trainings" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Training">
+            <Dependent Role="Trainings">
               <PropertyRef Name="fk_AspNetUser_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WTGModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK_TrainingDetailExercise">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
+          <End Role="TrainingDetails" Type="Self.TrainingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="exerciseID" />
+            </Principal>
+            <Dependent Role="TrainingDetails">
+              <PropertyRef Name="exerciseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrainingDetailTraining">
+          <End Role="Trainings" Type="Self.Trainings" Multiplicity="1" />
+          <End Role="TrainingDetails" Type="Self.TrainingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainings">
+              <PropertyRef Name="trainingId" />
+            </Principal>
+            <Dependent Role="TrainingDetails">
+              <PropertyRef Name="trainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Bodypart" EntityType="Self.Bodypart" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Exercise" EntityType="Self.Exercise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bodyparts" EntityType="Self.Bodyparts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exercise_bodypart" EntityType="Self.Exercise_bodypart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exercise_category" EntityType="Self.Exercise_category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingDetails" EntityType="Self.TrainingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainings" EntityType="Self.Trainings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Self.FK_AspNetUserRoles_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -253,51 +279,37 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
           <AssociationSet Name="FK_Exercise_bodypart_ToTable" Association="Self.FK_Exercise_bodypart_ToTable">
-            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="Exercises" EntitySet="Exercises" />
             <End Role="Exercise_bodypart" EntitySet="Exercise_bodypart" />
           </AssociationSet>
           <AssociationSet Name="FK_Exercise_bodypart_ToTable2" Association="Self.FK_Exercise_bodypart_ToTable2">
-            <End Role="Bodypart" EntitySet="Bodypart" />
+            <End Role="Bodyparts" EntitySet="Bodyparts" />
             <End Role="Exercise_bodypart" EntitySet="Exercise_bodypart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exercise_ToTable" Association="Self.FK_Exercise_ToTable">
-            <End Role="Training" EntitySet="Training" />
-            <End Role="Exercise" EntitySet="Exercise" />
           </AssociationSet>
           <AssociationSet Name="FK_Exercise_ToTable_1" Association="Self.FK_Exercise_ToTable_1">
             <End Role="Exercise_category" EntitySet="Exercise_category" />
-            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="Exercises" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="FK_Training_ToTable" Association="Self.FK_Training_ToTable">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Training" EntitySet="Training" />
+            <End Role="Trainings" EntitySet="Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingDetailExercise" Association="Self.FK_TrainingDetailExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="TrainingDetails" EntitySet="TrainingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingDetailTraining" Association="Self.FK_TrainingDetailTraining">
+            <End Role="Trainings" EntitySet="Trainings" />
+            <End Role="TrainingDetails" EntitySet="TrainingDetails" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WTGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetRoles">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -305,7 +317,7 @@
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUserClaims">
+        <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -313,9 +325,9 @@
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUserLogins">
+        <EntityType Name="AspNetUserLogin">
           <Key>
             <PropertyRef Name="LoginProvider" />
             <PropertyRef Name="ProviderKey" />
@@ -324,9 +336,9 @@
           <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUsers">
+        <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -344,7 +356,7 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Training" Relationship="Self.FK_Training_ToTable" FromRole="AspNetUsers" ToRole="Training" />
+          <NavigationProperty Name="Trainings" Relationship="Self.FK_Training_ToTable" FromRole="AspNetUsers" ToRole="Trainings" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Bodypart">
@@ -357,20 +369,17 @@
           <Property Name="MEV" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="MAV" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="MRV" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <NavigationProperty Name="Exercise_bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable2" FromRole="Bodypart" ToRole="Exercise_bodypart" />
+          <NavigationProperty Name="Exercise_bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable2" FromRole="Bodyparts" ToRole="Exercise_bodypart" />
         </EntityType>
-        <EntityType Name="Exercise">
+        <EntityType Name="C__MigrationHistory">
           <Key>
-            <PropertyRef Name="exerciseID" />
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="exerciseID" Type="Int32" Nullable="false" />
-          <Property Name="exerciseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="C1RM" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="fk_training_trainingID" Type="Int32" />
-          <Property Name="fk_exercise_categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Exercise_bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable" FromRole="Exercise" ToRole="Exercise_bodypart" />
-          <NavigationProperty Name="Training" Relationship="Self.FK_Exercise_ToTable" FromRole="Exercise" ToRole="Training" />
-          <NavigationProperty Name="Exercise_category" Relationship="Self.FK_Exercise_ToTable_1" FromRole="Exercise" ToRole="Exercise_category" />
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Exercise_bodypart">
           <Key>
@@ -380,8 +389,8 @@
           <Property Name="fk_exercise_exerciseID" Type="Int32" Nullable="false" />
           <Property Name="fk_bodypart_bodypartID" Type="Int32" Nullable="false" />
           <Property Name="EMG" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <NavigationProperty Name="Bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable2" FromRole="Exercise_bodypart" ToRole="Bodypart" />
-          <NavigationProperty Name="Exercise" Relationship="Self.FK_Exercise_bodypart_ToTable" FromRole="Exercise_bodypart" ToRole="Exercise" />
+          <NavigationProperty Name="Bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable2" FromRole="Exercise_bodypart" ToRole="Bodyparts" />
+          <NavigationProperty Name="Exercis" Relationship="Self.FK_Exercise_bodypart_ToTable" FromRole="Exercise_bodypart" ToRole="Exercises" />
         </EntityType>
         <EntityType Name="Exercise_category">
           <Key>
@@ -390,7 +399,31 @@
           <Property Name="exercise_categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="categoryType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Exercise" Relationship="Self.FK_Exercise_ToTable_1" FromRole="Exercise_category" ToRole="Exercise" />
+          <NavigationProperty Name="Exercises" Relationship="Self.FK_Exercise_ToTable_1" FromRole="Exercise_category" ToRole="Exercises" />
+        </EntityType>
+        <EntityType Name="Exercis">
+          <Key>
+            <PropertyRef Name="exerciseID" />
+          </Key>
+          <Property Name="exerciseID" Type="Int32" Nullable="false" />
+          <Property Name="exerciseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C1RM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="fk_exercise_categoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Exercise_bodypart" Relationship="Self.FK_Exercise_bodypart_ToTable" FromRole="Exercises" ToRole="Exercise_bodypart" />
+          <NavigationProperty Name="Exercise_category" Relationship="Self.FK_Exercise_ToTable_1" FromRole="Exercises" ToRole="Exercise_category" />
+          <NavigationProperty Name="TrainingDetails" Relationship="Self.FK_TrainingDetailExercise" FromRole="Exercises" ToRole="TrainingDetails" />
+        </EntityType>
+        <EntityType Name="TrainingDetail">
+          <Key>
+            <PropertyRef Name="exerciseID" />
+            <PropertyRef Name="trainingId" />
+          </Key>
+          <Property Name="exerciseType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exerciseDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exerciseID" Type="Int32" Nullable="false" />
+          <Property Name="trainingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exercis" Relationship="Self.FK_TrainingDetailExercise" FromRole="TrainingDetails" ToRole="Exercises" />
+          <NavigationProperty Name="Training" Relationship="Self.FK_TrainingDetailTraining" FromRole="TrainingDetails" ToRole="Trainings" />
         </EntityType>
         <EntityType Name="Training">
           <Key>
@@ -404,14 +437,14 @@
           <Property Name="tonnage" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="reps" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="avIntensity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Training_ToTable" FromRole="Training" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Exercise" Relationship="Self.FK_Exercise_ToTable" FromRole="Training" ToRole="Exercise" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Training_ToTable" FromRole="Trainings" ToRole="AspNetUsers" />
+          <NavigationProperty Name="TrainingDetails" Relationship="Self.FK_TrainingDetailTraining" FromRole="Trainings" ToRole="TrainingDetails" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -422,10 +455,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -436,22 +469,22 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Training_ToTable">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Training" Type="Self.Training" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Trainings" Type="Self.Training" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Training">
+            <Dependent Role="Trainings">
               <PropertyRef Name="fk_AspNetUser_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Exercise_bodypart_ToTable2">
-          <End Role="Bodypart" Type="Self.Bodypart" Multiplicity="1" />
+          <End Role="Bodyparts" Type="Self.Bodypart" Multiplicity="1" />
           <End Role="Exercise_bodypart" Type="Self.Exercise_bodypart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Bodypart">
+            <Principal Role="Bodyparts">
               <PropertyRef Name="bodypartID" />
             </Principal>
             <Dependent Role="Exercise_bodypart">
@@ -460,10 +493,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Exercise_bodypart_ToTable">
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="1" />
+          <End Role="Exercises" Type="Self.Exercis" Multiplicity="1" />
           <End Role="Exercise_bodypart" Type="Self.Exercise_bodypart" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Exercise">
+            <Principal Role="Exercises">
               <PropertyRef Name="exerciseID" />
             </Principal>
             <Dependent Role="Exercise_bodypart">
@@ -471,45 +504,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Exercise_ToTable">
-          <End Role="Training" Type="Self.Training" Multiplicity="0..1" />
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Training">
-              <PropertyRef Name="trainingId" />
-            </Principal>
-            <Dependent Role="Exercise">
-              <PropertyRef Name="fk_training_trainingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Exercise_ToTable_1">
           <End Role="Exercise_category" Type="Self.Exercise_category" Multiplicity="1" />
-          <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
+          <End Role="Exercises" Type="Self.Exercis" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exercise_category">
               <PropertyRef Name="exercise_categoryID" />
             </Principal>
-            <Dependent Role="Exercise">
+            <Dependent Role="Exercises">
               <PropertyRef Name="fk_exercise_categoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        <Association Name="FK_TrainingDetailExercise">
+          <End Role="Exercises" Type="Self.Exercis" Multiplicity="1" />
+          <End Role="TrainingDetails" Type="Self.TrainingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="exerciseID" />
+            </Principal>
+            <Dependent Role="TrainingDetails">
+              <PropertyRef Name="exerciseID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WTGEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_TrainingDetailTraining">
+          <End Role="Trainings" Type="Self.Training" Multiplicity="1" />
+          <End Role="TrainingDetails" Type="Self.TrainingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainings">
+              <PropertyRef Name="trainingId" />
+            </Principal>
+            <Dependent Role="TrainingDetails">
+              <PropertyRef Name="trainingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Bodyparts" EntityType="Self.Bodypart" />
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-          <EntitySet Name="Bodypart" EntityType="Self.Bodypart" />
-          <EntitySet Name="Exercise" EntityType="Self.Exercise" />
           <EntitySet Name="Exercise_bodypart" EntityType="Self.Exercise_bodypart" />
           <EntitySet Name="Exercise_category" EntityType="Self.Exercise_category" />
-          <EntitySet Name="Training" EntityType="Self.Training" />
+          <EntitySet Name="Exercises" EntityType="Self.Exercis" />
+          <EntitySet Name="TrainingDetails" EntityType="Self.TrainingDetail" />
+          <EntitySet Name="Trainings" EntityType="Self.Training" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -520,23 +566,27 @@
           </AssociationSet>
           <AssociationSet Name="FK_Training_ToTable" Association="Self.FK_Training_ToTable">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Training" EntitySet="Training" />
+            <End Role="Trainings" EntitySet="Trainings" />
           </AssociationSet>
           <AssociationSet Name="FK_Exercise_bodypart_ToTable2" Association="Self.FK_Exercise_bodypart_ToTable2">
-            <End Role="Bodypart" EntitySet="Bodypart" />
+            <End Role="Bodyparts" EntitySet="Bodyparts" />
             <End Role="Exercise_bodypart" EntitySet="Exercise_bodypart" />
           </AssociationSet>
           <AssociationSet Name="FK_Exercise_bodypart_ToTable" Association="Self.FK_Exercise_bodypart_ToTable">
-            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="Exercises" EntitySet="Exercises" />
             <End Role="Exercise_bodypart" EntitySet="Exercise_bodypart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Exercise_ToTable" Association="Self.FK_Exercise_ToTable">
-            <End Role="Training" EntitySet="Training" />
-            <End Role="Exercise" EntitySet="Exercise" />
           </AssociationSet>
           <AssociationSet Name="FK_Exercise_ToTable_1" Association="Self.FK_Exercise_ToTable_1">
             <End Role="Exercise_category" EntitySet="Exercise_category" />
-            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="Exercises" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingDetailExercise" Association="Self.FK_TrainingDetailExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="TrainingDetails" EntitySet="TrainingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrainingDetailTraining" Association="Self.FK_TrainingDetailTraining">
+            <End Role="Trainings" EntitySet="Trainings" />
+            <End Role="TrainingDetails" EntitySet="TrainingDetails" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -548,19 +598,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WTGModelStoreContainer" CdmEntityContainer="WTGEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="WTGModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DBEntities">
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="WTGModel.AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -568,7 +608,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="WTGModel.AspNetUserClaims">
+            <EntityTypeMapping TypeName="Model.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -578,7 +618,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="WTGModel.AspNetUserLogins">
+            <EntityTypeMapping TypeName="Model.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -587,7 +627,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="WTGModel.AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -604,9 +644,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Bodypart">
-            <EntityTypeMapping TypeName="WTGModel.Bodypart">
-              <MappingFragment StoreEntitySet="Bodypart">
+          <EntitySetMapping Name="Bodyparts">
+            <EntityTypeMapping TypeName="Model.Bodypart">
+              <MappingFragment StoreEntitySet="Bodyparts">
                 <ScalarProperty Name="bodypartID" ColumnName="bodypartID" />
                 <ScalarProperty Name="bodypartName" ColumnName="bodypartName" />
                 <ScalarProperty Name="MV" ColumnName="MV" />
@@ -616,19 +656,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Exercise">
-            <EntityTypeMapping TypeName="WTGModel.Exercise">
-              <MappingFragment StoreEntitySet="Exercise">
-                <ScalarProperty Name="exerciseID" ColumnName="exerciseID" />
-                <ScalarProperty Name="exerciseName" ColumnName="exerciseName" />
-                <ScalarProperty Name="C1RM" ColumnName="1RM" />
-                <ScalarProperty Name="fk_training_trainingID" ColumnName="fk_training_trainingID" />
-                <ScalarProperty Name="fk_exercise_categoryID" ColumnName="fk_exercise_categoryID" />
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="C__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Exercise_bodypart">
-            <EntityTypeMapping TypeName="WTGModel.Exercise_bodypart">
+            <EntityTypeMapping TypeName="Model.Exercise_bodypart">
               <MappingFragment StoreEntitySet="Exercise_bodypart">
                 <ScalarProperty Name="fk_exercise_exerciseID" ColumnName="fk_exercise_exerciseID" />
                 <ScalarProperty Name="fk_bodypart_bodypartID" ColumnName="fk_bodypart_bodypartID" />
@@ -637,7 +676,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Exercise_category">
-            <EntityTypeMapping TypeName="WTGModel.Exercise_category">
+            <EntityTypeMapping TypeName="Model.Exercise_category">
               <MappingFragment StoreEntitySet="Exercise_category">
                 <ScalarProperty Name="exercise_categoryID" ColumnName="exercise_categoryID" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
@@ -645,9 +684,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Training">
-            <EntityTypeMapping TypeName="WTGModel.Training">
-              <MappingFragment StoreEntitySet="Training">
+          <EntitySetMapping Name="Exercises">
+            <EntityTypeMapping TypeName="Model.Exercis">
+              <MappingFragment StoreEntitySet="Exercises">
+                <ScalarProperty Name="exerciseID" ColumnName="exerciseID" />
+                <ScalarProperty Name="exerciseName" ColumnName="exerciseName" />
+                <ScalarProperty Name="C1RM" ColumnName="C1RM" />
+                <ScalarProperty Name="fk_exercise_categoryID" ColumnName="fk_exercise_categoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingDetails">
+            <EntityTypeMapping TypeName="Model.TrainingDetail">
+              <MappingFragment StoreEntitySet="TrainingDetails">
+                <ScalarProperty Name="exerciseType" ColumnName="exerciseType" />
+                <ScalarProperty Name="exerciseDate" ColumnName="exerciseDate" />
+                <ScalarProperty Name="exerciseID" ColumnName="exerciseID" />
+                <ScalarProperty Name="trainingId" ColumnName="trainingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainings">
+            <EntityTypeMapping TypeName="Model.Training">
+              <MappingFragment StoreEntitySet="Trainings">
                 <ScalarProperty Name="trainingId" ColumnName="trainingId" />
                 <ScalarProperty Name="fk_AspNetUser_ID" ColumnName="fk_AspNetUser_ID" />
                 <ScalarProperty Name="week" ColumnName="week" />
@@ -659,12 +718,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="WTGModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
+              <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
             </EndProperty>
             <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
+              <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
@@ -681,7 +740,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

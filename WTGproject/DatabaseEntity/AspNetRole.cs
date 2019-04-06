@@ -7,30 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WTGproject
+namespace WTGproject.DatabaseEntity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Training
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Training()
+        public AspNetRole()
         {
-            this.Exercise = new HashSet<Exercise>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int trainingId { get; set; }
-        public string fk_AspNetUser_ID { get; set; }
-        public int week { get; set; }
-        public string frequency { get; set; }
-        public decimal Intensity { get; set; }
-        public Nullable<decimal> tonnage { get; set; }
-        public Nullable<decimal> reps { get; set; }
-        public string avIntensity { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exercise> Exercise { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
