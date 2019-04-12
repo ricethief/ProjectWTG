@@ -9,7 +9,7 @@
 <body>
     <h2>Create Program</h2>
     <!--Week slider bar-->
-    <form action="generate" method="post">
+    <form action="Training" method="post">
         <fieldset>
             <legend>CHOOSE THE LENGHTH OF PROGRAM</legend>
             <div class="horizontally-stacked-slider">
@@ -39,7 +39,11 @@
                             {
                                 <tr>
                                     <td>
-                                        <input type="checkbox" name="@item" id="@item" value="@item" />
+                                        <input checked="checked"
+                                               id="chkdate"
+                                               name="chkdate"
+                                               type="checkbox"
+                                               value=@item />
                                         <b>@item</b>
                                     </td>
                                     <td>
@@ -94,6 +98,7 @@
                         <input type="submit" value="Generate Training" id="submit1">
                     </div>
                 </fieldset>
+                @ViewBag.Message
             </div>
         </div>
     </form>
